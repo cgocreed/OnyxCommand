@@ -1,0 +1,31 @@
+Update needed in install_from_zip method around line 177:
+
+REPLACE:
+        $module_dir = OC_MODULES_DIR . $module_info['module_id'] . '/';
+        
+        if (file_exists($module_dir)) {
+            $wp_filesystem->rmdir($temp_dir, true);
+            return new WP_Error('module_exists', __('Module already exists.', 'onyx-command'));
+        }
+
+WITH:
+        // Check if module already exists in database
+        $db = OC_Database::get_instance();
+        $existing_module = $db->get_module($module_info['module_id']);
+        
+        if ($existing_module) {
+            $wp_filesystem->rmdir($temp_dir, true);
+            return new WP_Error('module_exists', sprintf(
+                __('Module "%s" (ID: %s) is already installed. Please delete the existing module first if you want to upload a new version.', 'onyx-command'),
+                $existing_module['name'],
+                $module_info['module_id']
+            ));
+        }
+        
+        // Check if module directory already exists
+        $module_dir = OC_MODULES_DIR . $module_info['module_id'] . '/';
+        
+        if (file_exists($module_dir)) {
+            $wp_filesystem->rmdir($temp_dir, true);
+            return new WP_Error('module_dir_exists', __('Module directory already exists. Please delete it manually first.', 'onyx-command'));
+        }

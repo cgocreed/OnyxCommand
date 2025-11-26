@@ -1,0 +1,241 @@
+/* AI Alt Tag Manager Styles */
+
+.ai-alt-tag-manager {
+    max-width: 1600px;
+}
+
+.ai-alt-actions {
+    margin: 5px 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Button styling controlled by Onyx Command Settings */
+/* See Onyx Command > Settings to customize button appearance */
+
+.ai-progress {
+    font-weight: 600;
+    color: #667eea;
+    background: #f0f0f1;
+    padding: 8px 16px;
+    border-radius: 20px;
+}
+
+.ai-images-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 24px;
+    margin-top: 24px;
+}
+
+.ai-image-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.ai-image-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    border-color: #667eea;
+}
+
+.ai-image-preview {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 24px;
+    text-align: center;
+    min-height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ai-image-preview img {
+    max-width: 100%;
+    max-height: 250px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    object-fit: contain;
+}
+
+.ai-image-details {
+    padding: 24px;
+}
+
+.ai-image-details h3 {
+    margin: 0 0 8px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1d2327;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ai-image-meta {
+    font-size: 12px;
+    color: #757575;
+    margin-bottom: 16px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.ai-image-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.ai-image-meta span::before {
+    content: '•';
+    color: #667eea;
+}
+
+.ai-alt-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;
+}
+
+.ai-alt-input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.ai-image-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.ai-result-message {
+    margin-top: 12px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    display: none;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.ai-result-message span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* AI Button on Media Edit Page */
+.ai-generate-alt-button {
+    margin-top: 10px;
+}
+
+.ai-alt-suggestion-result {
+    padding: 12px 16px;
+    background: #f0f6fc;
+    border-left: 4px solid #2271b1;
+    border-radius: 4px;
+    margin-top: 10px;
+    display: none;
+    animation: slideIn 0.3s ease;
+}
+
+.ai-alt-suggestion-result.show {
+    display: block;
+}
+
+.ai-alt-suggestion-result strong {
+    display: block;
+    margin-bottom: 5px;
+    color: #2271b1;
+}
+
+/* Loading states */
+button.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+button.loading::after {
+    content: '...';
+    animation: loading 1s infinite;
+}
+
+@keyframes loading {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+/* Media Library Column Styles */
+.ai-alt-column-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.ai-alt-display {
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.ai-alt-text {
+    color: #1d2327;
+}
+
+.ai-alt-status {
+    font-size: 11px;
+    margin-top: 4px;
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+    .ai-images-grid {
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    }
+}
+
+@media (max-width: 1024px) {
+    .ai-images-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .ai-images-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .ai-image-actions {
+        flex-direction: column;
+    }
+    
+    .ai-image-actions .button {
+        width: 100%;
+    }
+}
